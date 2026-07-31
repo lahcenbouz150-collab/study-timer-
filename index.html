@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Study Focus</title>
+
+    <meta name="description" content="Modern Study Timer for Students">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="background-blur blur1"></div>
+<div class="background-blur blur2"></div>
+
+<header class="header">
+
+    <div class="logo">
+        🎓 Study Focus
+    </div>
+
+    <div class="header-actions">
+
+        <button id="languageBtn" class="icon-btn">
+            🌐 EN
+        </button>
+
+    </div>
+
+</header>
+
+<main class="container">
+
+<section class="hero">
+
+<h1 id="heroTitle">
+Study Focus
+</h1>
+
+<p id="heroSubtitle">
+Stay focused. Finish your study sessions.
+</p>
+
+</section>
+
+
+<section class="stats">
+
+<div class="stat-card">
+<h3 id="totalSubjectsValue">0</h3>
+<p id="statSubjects">Subjects</p>
+</div>
+
+<div class="stat-card">
+<h3 id="completedValue">0</h3>
+<p id="statCompleted">Completed</p>
+</div>
+
+<div class="stat-card">
+<h3 id="activeValue">0</h3>
+<p id="statActive">Active</p>
+</div>
+
+<div class="stat-card">
+<h3 id="totalHoursValue">00:00</h3>
+<p id="statTime">Study Time</p>
+</div>
+
+</section>
+
+
+
+<section id="subjectsContainer"
+class="subjects-grid">
+
+</section>
+
+</main>
+
+
+<button
+id="addSubjectBtn"
+class="floating-button">
+
++
+
+</button>
+
+<!-- ====================================== -->
+
+<!-- Add Subject Modal -->
+
+<!-- ====================================== -->
+
+<div
+id="subjectModal"
+class="modal hidden">
+
+<div class="modal-content">
+
+<h2 id="modalTitle">
+Add Subject
+</h2>
+
+<div class="form-group">
+
+<label id="subjectLabel">
+Subject Name
+</label>
+
+<input
+id="subjectName"
+type="text"
+maxlength="40">
+
+</div>
+
+<div class="time-grid">
+
+<div class="form-group">
+
+<label id="hoursLabel">
+Hours
+</label>
+
+<input
+id="studyHours"
+type="number"
+min="0"
+max="24"
+value="0">
+
+</div>
+
+<div class="form-group">
+
+<label id="minutesLabel">
+Minutes
+</label>
+
+<input
+id="studyMinutes"
+type="number"
+min="0"
+max="59"
+value="30">
+
+</div>
+
+</div>
+
+<div class="modal-buttons">
+
+<button
+id="cancelBtn"
+class="secondary-btn">
+
+Cancel
+
+</button>
+
+<button
+id="createBtn"
+class="primary-btn">
+
+Create
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- ====================================== -->
+
+<!-- Completion Modal -->
+
+<!-- ====================================== -->
+
+<div
+id="finishModal"
+class="modal hidden">
+
+<div class="modal-content">
+
+<div class="success-icon">
+
+✅
+
+</div>
+
+<h2 id="finishTitle">
+
+Study Session Completed!
+
+</h2>
+
+<p id="finishMessage">
+
+Excellent work!
+
+</p>
+
+<button
+id="finishClose"
+class="primary-btn">
+
+Close
+
+</button>
+
+</div>
+
+</div>
+
+
+
+
+<!-- ====================================== -->
+
+<!-- Delete Confirmation -->
+
+<!-- ====================================== -->
+
+<div
+id="deleteModal"
+class="modal hidden">
+
+<div class="modal-content">
+
+<h2 id="deleteTitle">
+
+Delete Subject?
+
+</h2>
+
+<p id="deleteText">
+
+This action cannot be undone.
+
+</p>
+
+<div class="modal-buttons">
+
+<button
+id="cancelDelete"
+class="secondary-btn">
+
+Cancel
+
+</button>
+
+<button
+id="confirmDelete"
+class="danger-btn">
+
+Delete
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+
+<!-- ====================================== -->
+
+<!-- Template -->
+
+<!-- ====================================== -->
+
+<template id="subjectTemplate">
+
+<div class="subject-card">
+
+<div class="card-header">
+
+<div>
+
+<h2 class="subject-title">
+Mathematics
+</h2>
+
+<p class="subject-status">
+
+Waiting
+
+</p>
+
+</div>
+
+<div class="progress-wrapper">
+
+<svg
+class="progress-ring"
+width="110"
+height="110">
+
+<circle
+class="progress-bg"
+cx="55"
+cy="55"
+r="48">
+
+</circle>
+
+<circle
+class="progress-circle"
+cx="55"
+cy="55"
+r="48">
+
+</circle>
+
+</svg>
+
+<div class="progress-time">
+
+02:00:00
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="buttons">
+
+<button class="start-btn">
+▶ Start
+</button>
+
+<button class="pause-btn">
+⏸ Pause
+</button>
+
+<button class="resume-btn">
+▶ Resume
+</button>
+
+<button class="reset-btn">
+🔄 Reset
+</button>
+
+<button class="delete-btn">
+🗑 Delete
+</button>
+
+</div>
+
+
+<div class="todo-section">
+
+<h3>
+
+Todo List
+
+</h3>
+
+<div class="todo-input">
+
+<input
+class="task-input"
+type="text"
+placeholder="New Task">
+
+<button class="task-add">
+
++
+
+</button>
+
+</div>
+
+<ul class="todo-list">
+
+</ul>
+
+</div>
+
+</div>
+
+</template>
+
+<audio
+id="alarmSound"
+preload="auto">
+
+<source
+src="sounds/alarm.mp3"
+type="audio/mpeg">
+
+</audio>
+
+<script src="script.js"></script>
+
+</body>
+</html>
