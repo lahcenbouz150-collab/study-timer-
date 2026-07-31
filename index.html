@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Study Timer — Focus. Track. Finish.</title>
+<meta name="description" content="Study Timer helps students run independent countdown timers for every subject, with progress rings, alarms and full bilingual support." />
+<link rel="icon" type="image/svg+xml" href="assets/icons/logo.svg" />
+
+<!-- Fonts: Fraunces (display), Inter (Latin body), Cairo (Arabic body), JetBrains Mono (digits) -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&family=Cairo:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ================= SKIP LINK ================= -->
+<a class="skip-link" href="#main" data-i18n="skipToContent">Skip to content</a>
+
+<!-- ================= HEADER ================= -->
+<header class="site-header">
+  <div class="header-inner">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 48 48" width="30" height="30">
+          <circle cx="24" cy="24" r="20" fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="4 5" opacity="0.55"/>
+          <circle cx="24" cy="24" r="13" fill="none" stroke="currentColor" stroke-width="3.5"/>
+          <line x1="24" y1="24" x2="24" y2="14" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/>
+          <line x1="24" y1="24" x2="31" y2="27" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/>
+        </svg>
+      </span>
+      <span class="brand-name" data-i18n="brandName">Study Timer</span>
+    </div>
+
+    <nav class="main-nav" aria-label="Primary">
+      <button class="nav-pill is-active" id="navHomeBtn" data-view="home" aria-current="page">
+        <span data-i18n="navHome">Home</span>
+      </button>
+      <button class="nav-pill" id="navSettingsBtn" data-view="settings">
+        <span data-i18n="navSettings">Settings</span>
+      </button>
+    </nav>
+
+    <div class="header-actions">
+      <button class="icon-btn" id="langToggleBtn" aria-label="Switch language" type="button">
+        <span id="langToggleLabel">EN</span>
+      </button>
+      <button class="icon-btn" id="themeToggleBtn" aria-label="Switch theme" type="button">
+        <svg class="icon-sun" viewBox="0 0 24 24" width="19" height="19" aria-hidden="true">
+          <circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="2"/>
+          <g stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="12" y1="1.5" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22.5"/>
+            <line x1="1.5" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22.5" y2="12"/>
+            <line x1="4.6" y1="4.6" x2="6.3" y2="6.3"/><line x1="17.7" y1="17.7" x2="19.4" y2="19.4"/>
+            <line x1="4.6" y1="19.4" x2="6.3" y2="17.7"/><line x1="17.7" y1="6.3" x2="19.4" y2="4.6"/>
+          </g>
+        </svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" width="19" height="19" aria-hidden="true">
+          <path fill="currentColor" d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11Z"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ================= HOME VIEW ================= -->
+  <section class="view" id="homeView" data-view-panel="home">
+
+    <section class="hero">
+      <div class="hero-dial" aria-hidden="true">
+        <svg viewBox="0 0 200 200" width="150" height="150">
+          <circle cx="100" cy="100" r="90" fill="none" stroke="var(--ring-track)" stroke-width="2"/>
+          <g class="hero-ticks" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.35"></g>
+          <circle cx="100" cy="100" r="66" fill="none" stroke="var(--accent-soft)" stroke-width="14"/>
+          <circle class="hero-progress" cx="100" cy="100" r="66" fill="none" stroke="var(--accent)" stroke-width="14" stroke-linecap="round" transform="rotate(-90 100 100)"/>
+          <text x="100" y="107" text-anchor="middle" class="hero-dial-text" font-family="'JetBrains Mono', monospace" font-size="26" font-weight="600" fill="var(--text)" dir="ltr">25:00</text>
+        </svg>
+      </div>
+      <h1 class="hero-title" data-i18n="heroTitle">Study Timer</h1>
+      <p class="hero-subtitle" data-i18n="heroSubtitle">One dial per subject. Start it, trust it, and watch the work get done.</p>
+    </section>
+
+    <section class="subjects-section" aria-labelledby="subjectsHeading">
+      <div class="subjects-header">
+        <h2 id="subjectsHeading" data-i18n="subjectsHeading">Your subjects</h2>
+        <p class="subjects-count" id="subjectsCount"></p>
+      </div>
+
+      <!-- Empty state -->
+      <div class="empty-state" id="emptyState" hidden>
+        <svg viewBox="0 0 120 120" width="90" height="90" aria-hidden="true">
+          <circle cx="60" cy="60" r="52" fill="none" stroke="var(--ring-track)" stroke-width="3" stroke-dasharray="6 7"/>
+          <path d="M40 66 L54 78 L82 46" fill="none" stroke="var(--accent)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity="0.85"/>
+        </svg>
+        <h3 data-i18n="emptyTitle">No subjects yet</h3>
+        <p data-i18n="emptyBody">Add your first subject and give it a duration. Your dial starts here.</p>
+        <button class="btn btn-primary" id="emptyAddBtn" type="button" data-i18n="emptyCta">Add a subject</button>
+      </div>
+
+      <!-- Cards grid -->
+      <div class="cards-grid" id="cardsGrid"></div>
+    </section>
+
+    <button class="fab" id="addSubjectBtn" type="button" aria-label="Add subject" data-i18n-aria="addSubjectAria">
+      <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+        <line x1="12" y1="5" x2="12" y2="19" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+        <line x1="5" y1="12" x2="19" y2="12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+      </svg>
+    </button>
+
+  </section>
+
+  <!-- ================= SETTINGS VIEW ================= -->
+  <section class="view" id="settingsView" data-view-panel="settings" hidden>
+    <div class="settings-wrap">
+      <h1 class="settings-title" data-i18n="settingsTitle">Settings</h1>
+
+      <div class="settings-card">
+        <div class="settings-row">
+          <div class="settings-row-text">
+            <h3 data-i18n="settingLanguage">Language</h3>
+            <p data-i18n="settingLanguageDesc">Choose the interface language.</p>
+          </div>
+          <div class="segmented" role="radiogroup" aria-label="Language">
+            <button class="segmented-btn" data-lang-option="en" type="button" role="radio">English</button>
+            <button class="segmented-btn" data-lang-option="ar" type="button" role="radio">العربية</button>
+          </div>
+        </div>
+
+        <div class="settings-row">
+          <div class="settings-row-text">
+            <h3 data-i18n="settingTheme">Theme</h3>
+            <p data-i18n="settingThemeDesc">Switch between dark and light.</p>
+          </div>
+          <div class="segmented" role="radiogroup" aria-label="Theme">
+            <button class="segmented-btn" data-theme-option="dark" type="button" role="radio" data-i18n="themeDark">Dark</button>
+            <button class="segmented-btn" data-theme-option="light" type="button" role="radio" data-i18n="themeLight">Light</button>
+          </div>
+        </div>
+
+        <div class="settings-row">
+          <div class="settings-row-text">
+            <h3 data-i18n="settingAlarm">Alarm</h3>
+            <p data-i18n="settingAlarmDesc">Play a sound when a timer finishes.</p>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="alarmToggle" checked />
+            <span class="switch-track" aria-hidden="true"><span class="switch-thumb"></span></span>
+          </label>
+        </div>
+
+        <div class="settings-row settings-row-column">
+          <div class="settings-row-text">
+            <h3 data-i18n="settingVolume">Alarm volume</h3>
+            <p data-i18n="settingVolumeDesc">Adjust how loud the finish alarm plays.</p>
+          </div>
+          <div class="volume-control">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M4 9v6h4l5 5V4L8 9H4Z"/></svg>
+            <input type="range" id="volumeSlider" min="0" max="100" value="70" aria-label="Volume" />
+            <button class="btn-ghost-small" id="testAlarmBtn" type="button" data-i18n="settingTestAlarm">Test</button>
+          </div>
+        </div>
+
+        <div class="settings-row">
+          <div class="settings-row-text">
+            <h3 data-i18n="settingReset">Reset all data</h3>
+            <p data-i18n="settingResetDesc">Delete every subject and restore default settings. This cannot be undone.</p>
+          </div>
+          <button class="btn btn-danger" id="resetDataBtn" type="button" data-i18n="settingResetCta">Reset data</button>
+        </div>
+      </div>
+
+      <div class="settings-card">
+        <h3 data-i18n="aboutHeading">About</h3>
+        <p data-i18n="aboutBody">Study Timer is an independent, offline-friendly timer built for focused study sessions — one dial per subject, running entirely in your browser.</p>
+        <p class="version-tag"><span data-i18n="aboutVersion">Version</span> <span dir="ltr">1.0.0</span></p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ================= ADD SUBJECT MODAL ================= -->
+<div class="modal-backdrop" id="modalBackdrop" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <button class="modal-close" id="modalCloseBtn" aria-label="Close" type="button">
+      <svg viewBox="0 0 24 24" width="18" height="18"><line x1="5" y1="5" x2="19" y2="19" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><line x1="19" y1="5" x2="5" y2="19" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+    </button>
+    <h2 id="modalTitle" data-i18n="modalTitle">Add a subject</h2>
+    <form id="subjectForm" novalidate>
+      <label class="field-label" for="subjectNameInput" data-i18n="fieldSubjectName">Subject name</label>
+      <input class="text-input" id="subjectNameInput" type="text" maxlength="40" autocomplete="off" data-i18n-placeholder="fieldSubjectNamePlaceholder" placeholder="e.g. Organic Chemistry" />
+      <p class="field-error" id="nameError" role="alert"></p>
+
+      <div class="field-row">
+        <div class="field-group">
+          <label class="field-label" for="hoursInput" data-i18n="fieldHours">Hours</label>
+          <input class="text-input" id="hoursInput" type="number" min="0" max="23" value="0" inputmode="numeric" />
+        </div>
+        <div class="field-group">
+          <label class="field-label" for="minutesInput" data-i18n="fieldMinutes">Minutes</label>
+          <input class="text-input" id="minutesInput" type="number" min="0" max="59" value="25" inputmode="numeric" />
+        </div>
+      </div>
+      <p class="field-error" id="timeError" role="alert"></p>
+
+      <div class="modal-actions">
+        <button type="button" class="btn btn-ghost" id="modalCancelBtn" data-i18n="modalCancel">Cancel</button>
+        <button type="submit" class="btn btn-primary" id="modalCreateBtn" data-i18n="modalCreate">Create</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ================= TOAST LAYER ================= -->
+<div class="toast-layer" id="toastLayer" aria-live="polite" aria-atomic="true"></div>
+
+<!-- Alarm audio (see assets/sounds/alarm.mp3 — placeholder; a synthesized tone is used as a guaranteed fallback) -->
+<audio id="alarmAudio" src="assets/sounds/alarm.mp3" preload="auto"></audio>
+
+<script src="script.js"></script>
+</body>
+</html>
